@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // pages
-Route::get('/', 'App\Http\Controllers\HRSController@index')->name('home'); 
+Route::get('/', 'HRSController@index')->name('home'); 
 Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('reserve');
 
 //actions

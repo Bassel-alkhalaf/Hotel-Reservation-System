@@ -7,8 +7,8 @@
         <title>Hotel Reservation System</title>
 
         <link rel="stylesheet" href="{{ asset('resources/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('resources/css/mdb.min.css')}}"><!-- comment -->
-        <link rel="stylesheet" href="{{ asset('resources/css/style.min.css')}}"><!-- comment -->
+        <link rel="stylesheet" href="{{ asset('resources/css/mdb.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('resources/css/style.min.css')}}">
         
         
     </head>
@@ -25,9 +25,9 @@
        
        
        
-       <script type='text/javascript' src="{{ assset('resources/js/jquery-3.4.1.min.js')}}"></script>
-       <script type='text/javascript' src="{{ assset('resources/js/popper.min.js')}}"></script>
-       <script type='text/javascript' src="{{ assset('resources/js/bootstrap.min.js')}}"></script>
-       <script type='text/javascript' src="{{ assset('resources/js/mdb.min.js')}}"></script>
+       <script type='text/javascript' src="{{ asset('resources/js/jquery-3.4.1.min.js')}}"></script>
+       <script type='text/javascript' src="{{ asset('resources/js/popper.min.js')}}"></script>
+       <script type='text/javascript' src="{{ asset('resources/js/bootstrap.min.js')}}"></script>
+       <script type='text/javascript' src="{{ asset('resources/js/mdb.min.js')}}"></script>
     </body>
 </html>
