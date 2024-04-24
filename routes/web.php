@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// pages
+Route::get('/', 'App\Http\Controllers\HRSController@index')->name('home'); 
+Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('reserve');
+
+//actions
+Route::post('/create_resrvation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
