@@ -18,4 +18,4 @@ Route::get('/', 'App\Http\Controllers\HRSController@index')->name('home');
 Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('reserve');
 
 //actions
-Route::post('/create_resrvation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
+Route::post('/create_reservation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
