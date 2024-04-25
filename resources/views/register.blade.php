@@ -33,7 +33,7 @@
                 <button type="submit" class="btn btn-primary mb-3">Register</button>
             </div>
 
-            <p class="text-center">Already have an account? <a href="{{route('sign_in')}}">click here!</a></p>
+            <p class="text-center">Already have an account? <a href="{{ route('sign_in') }}">click here!</a></p>
         </form>
     </div>
 @endsection

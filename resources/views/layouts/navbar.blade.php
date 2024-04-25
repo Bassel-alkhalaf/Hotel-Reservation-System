@@ -21,7 +21,7 @@
           <a class="nav-link" href="#">Rooms</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
+          <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
         </li>
       </ul>
     </div>
