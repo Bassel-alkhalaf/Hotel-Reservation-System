@@ -52,5 +52,20 @@ class HRSController extends Controller
             return back()->withInput()->withErrors(['error' => 'An error occurred while processing your reservation. Please try again later.']);
         }
     }
+
+    // sign in page 
+    public function signIn() {
+        return view('sign_in');        
+    }
+
+    public function validateSignIn(Request $request) {
+        // validate sign logic
+    }
+
+    public function register(){
+        return view('register');
+    }
+
+
     
 }

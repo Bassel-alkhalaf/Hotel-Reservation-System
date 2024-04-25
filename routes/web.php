@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 // pages
 Route::get('/', 'App\Http\Controllers\HRSController@index')->name('home'); 
 Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('reserve');
+Route::get('/sign_in', 'App\Http\Controllers\HRSController@signIn')->name('sign_in');
+Route::get('/register', 'App\Http\Controllers\HRSController@register')->name('register');
+
+
 
 //actions
 Route::post('/create_reservation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
+Route::post('/validate_sign_in', 'App\Http\Controllers\HRSController@validateSignIn')->name('validate_sign_in');
