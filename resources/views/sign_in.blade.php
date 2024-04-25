@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('content')
+
+{{ csrf_field()}}
 <div class="container my-5">
         <h1 class="mb-5 text-center">Sign In</h1>
         <form class="px-5 mx-5" action="{{ route('validate_sign_in') }}" method="POST">
