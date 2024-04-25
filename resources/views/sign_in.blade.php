@@ -2,7 +2,15 @@
 @section('content')
 <div class="container my-5">
         <h1 class="mb-5 text-center">Sign In</h1>
+
         <form class="px-5 mx-5" action="{{ route('validate_sign_in') }}" method="POST">
+            @csrf
+            
+            <!-- Display errors -->
+            @error('error')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        
             <div class="input-group mb-3" data-mdb-input-init>
                 <input type="email" name="email" class="form-control" placeholder="Email"/>
             </div>

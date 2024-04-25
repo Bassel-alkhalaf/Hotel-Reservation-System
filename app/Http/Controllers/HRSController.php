@@ -7,6 +7,8 @@ use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class HRSController extends Controller
 {
@@ -61,7 +63,20 @@ class HRSController extends Controller
     }
 
     public function validateSignIn(Request $request) {
-        // validate sign logic
+        // Validate the sign-in form data
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        // Attempt to authenticate the user
+        if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']])) {
+        
+            return redirect()->route('home')->with('successMsg', 'Welcome back!');
+        } else {
+            // Authentication failed, redirect back with an error message
+            return back()->withErrors(['error' => 'Invalid email or password'])->withInput();
+        }
     }
 
     public function register(){
