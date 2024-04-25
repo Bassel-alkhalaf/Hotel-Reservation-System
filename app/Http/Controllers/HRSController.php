@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class HRSController extends Controller
 {
@@ -67,7 +69,24 @@ class HRSController extends Controller
     }
 
     public function validateRegister(Request $request) {
-        // register logic
+
+        $validatedData = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'country' => 'required|string',
+            'postal' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        // Create and save the user
+        $user = new User();
+        $user->fill($validatedData);
+        $user->password = Hash::make($validatedData['password']); // Hash the password before saving
+        $user->save();
+
+        // Optionally, you can redirect the user after successful registration
+        return redirect()->route('sign_in')->with('successMsg', 'Registration successful. You can now login.');
     }
 
 

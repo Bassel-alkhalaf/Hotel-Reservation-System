@@ -3,7 +3,8 @@
 <div class="container my-5">
         <h1 class="mb-5 text-center">Sign In</h1>
         <form class="px-5 mx-5" action="{{ route('validate_register') }}" method="POST">
-
+            @csrf
+            
             <div class="input-group mb-3" data-mdb-input-init>
                 <input type="text" name="first_name" class="form-control" placeholder="First Name"/>
             </div>
