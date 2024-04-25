@@ -104,6 +104,43 @@ class HRSController extends Controller
         return redirect()->route('sign_in')->with('successMsg', 'Registration successful. You can now login.');
     }
 
+    public function rooms() {
+        // Path to the text file containing room details
+        $filePath = storage_path('app/room_details.txt');
+    
+        // Parse the room details from the text file
+        $rooms = $this->parseRoomDetails($filePath);
+    
+        // Pass the room details to the view
+        return view('rooms', compact('rooms'));
+    }
+    
 
+    private function parseRoomDetails($filePath) {
+        $rooms = [];
+    
+        $file = fopen($filePath, 'r');
+    
+        while (!feof($file)) {
+            $line = fgets($file);
+    
+            // Extract room number, title, and rate from the line
+            preg_match('/Room number: (\d+), title: (.*), rate: (\$\d+)/', $line, $matches);
+    
+            // Check if the line matches the expected format
+            if (count($matches) === 4) {
+                // Store room details in an associative array
+                $rooms[] = [
+                    'room_number' => trim($matches[1]),
+                    'title' => trim($matches[2]),
+                    'rate' => trim($matches[3])
+                ];
+            }
+        }
+        
+        fclose($file);
+        return $rooms;
+    }
+    
     
 }

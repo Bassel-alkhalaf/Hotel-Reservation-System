@@ -18,6 +18,7 @@ Route::get('/', 'App\Http\Controllers\HRSController@index')->name('home');
 Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('reserve');
 Route::get('/sign_in', 'App\Http\Controllers\HRSController@signIn')->name('sign_in');
 Route::get('/register', 'App\Http\Controllers\HRSController@register')->name('register');
+Route::get('/rooms', 'App\Http\Controllers\HRSController@rooms')->name('rooms');
 
 
 
