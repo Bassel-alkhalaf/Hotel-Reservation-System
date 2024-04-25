@@ -6,10 +6,21 @@
 
         <title>Hotel Reservation System</title>
 
-        <link rel="stylesheet" href="{{ asset('../resources/css/mdb.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('../resources/css/mdb.rtl.min.css') }}">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+        rel="stylesheet"
+        />
     </head>
     <body class="antialiased">
        @include('layouts.navbar')
@@ -25,7 +36,10 @@
        
        
 
-       <script type='text/javascript' src="{{ asset('../resources/js/mdb.es.min.js')}}"></script>
-       <script type='text/javascript' src="{{ asset('../resources/js/mdb.umd.min.js')}}"></script>
+       <!-- MDB -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
+        ></script>
     </body>
 </html>

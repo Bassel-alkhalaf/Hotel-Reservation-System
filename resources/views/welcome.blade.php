@@ -5,7 +5,7 @@
     class="text-center bg-image"
     style="
       background-image: url('https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-      height: 400px;
+      height: 100vh;
       background-size: cover;
       background-position: center;
      
@@ -35,86 +35,115 @@
             panoramic views, inviting you to unwind in style.</p>
     </div>
 </div>
-<div class="container">
-    <!-- Carousel wrapper -->
-    <div id="carouselBasicExample" class="carousel slide carousel-fade p-5" data-mdb-ride="carousel" data-mdb-carousel-init>
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button
-            type="button"
-            data-mdb-target="#carouselBasicExample"
-            data-mdb-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-            ></button>
-            <button
-            type="button"
-            data-mdb-target="#carouselBasicExample"
-            data-mdb-slide-to="1"
-            aria-label="Slide 2"
-            ></button>
-            <button
-            type="button"
-            data-mdb-target="#carouselBasicExample"
-            data-mdb-slide-to="2"
-            aria-label="Slide 3"
-            ></button>
-        </div>
 
-        <!-- Inner -->
-        <div class="carousel-inner">
-            <!-- Single item -->
-            <div class="carousel-item active">
-            <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Sunset Over the City"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item">
-            <img src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Canyon at Nigh"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item">
-            <img src="https://images.pexels.com/photos/161758/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Cliff Above a Stormy Sea"/>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-            </div>
-        </div>
-        <!-- Inner -->
-
-        <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample" data-mdb-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        
-    </div>
+<div id="carouselExampleCrossfade" class="carousel slide carousel-fade py-5 w-50 mx-auto" data-mdb-ride="carousel" data-mdb-carousel-init>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-mdb-target="#carouselExampleCrossfade"
+      data-mdb-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselExampleCrossfade"
+      data-mdb-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-mdb-target="#carouselExampleCrossfade"
+      data-mdb-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Sunset Over the City"/>    </div>
+    <div class="carousel-item">
+    <img src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Canyon at Nigh"/>    </div>
+    <div class="carousel-item">
+    <img src="https://images.pexels.com/photos/161758/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="Cliff Above a Stormy Sea"/>    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCrossfade" data-mdb-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCrossfade" data-mdb-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
+
 <!-- Carousel wrapper -->
 </div>
-<div class="container-fluid">
-    <h2>Amenities</h2>
-    <div class="col-lg-4 col-md-3 col-sm-2">
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+<div class="container-fluid mx-auto w-75">
+    <h2>Featured Amenities: </h2>
+    <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="fas fa-seedling me-2"></i>Sustainability</li>
+        <li class="py-2"><i class="far fa-building me-2"></i>Meeting Space</li>
+        <li class="py-2"><i class="fas fa-check me-2"></i>Convenience Store</li>
     </ul>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="fas fa-utensils me-2"></i>Restaurant</li>
+        <li class="py-2"><i class="fas fa-wifi me-2"></i>Free Wifi</li>
+        <li class="py-2"><i class="fas fa-dumbbell me-2"></i>Fitness Center</li>
+    </ul>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="fas fa-mug-hot me-2"></i>Free Coffee/Tea</li>
+        <li class="py-2"><i class="fas fa-gift me-2"></i>Gift Shop</li>
+        <li class="py-2"><i class="fas fa-soap me-2"></i>Dry Cleaning Service</li>
+    </ul>
+    </div>
+    </div>
+    <div class="row">
+    <h2>Hotel Information: </h2>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="far fa-clock me-2"></i>Check-in: 3:00 pm</li>
+        <li class="py-2"><i class="far fa-clock me-2"></i>Check-out: 12:00 pm</li>
+        <li class="py-2"><i class="fas fa-ban-smoking me-2"></i>Smoke Free Property</li>
+    </ul>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="fas fa-paw me-2"></i><b>Pet Policy</b></li>
+        <small>Maximum Pet Weight: 50lbs<br>
+            Maximum Number of Pets in Room: 2</small>
+    </ul>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <ul class="list-unstyled p-2">
+        <li class="py-2"><i class="fas fa-square-parking me-2"></i><b>Parking</b></li>
+        <small>Complimentary On-Site Parking<br></small>
+        <small>Long Term Parking</small>
+    </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container my-5 bg-secondary">
+    <div class="row">
+    <div class="col-lg-6 col-md-12 d-flex align-content-center">
+        <div class="align-content-center">
+        <p class="text-center p-4 text-light">From the moment you step foot into our elegant lobby, our dedicated staff are committed to 
+            ensuring your stay exceeds expectations. Experience warm welcomes, personalized service, and attention to detail 
+            that define the hallmark of hospitality at Star Hotel.</p>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 p-0">
+    <div class="me-0">
+        <img class="fluid-img mw-100" src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Hotel image with a pool">
+    </div>
+    </div>
     </div>
 </div>
 

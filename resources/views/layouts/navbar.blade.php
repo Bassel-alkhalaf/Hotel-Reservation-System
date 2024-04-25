@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Star Hotel</a>
+    <a class="navbar-brand" href="{{ route('home') }}">Star Hotel</a>
     <button
       data-mdb-collapse-init
       class="navbar-toggler"
@@ -13,9 +13,9 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Rooms</a>
