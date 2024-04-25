@@ -1,0 +1,10 @@
+Room number: 101, title: 1 King Bed, Traditional Guest Room, rate: $100
+Room number: 102, title: 1 King Bed, Traditional Guest Room, rate: $100
+Room number: 103, title: 1 King Bed, Traditional Guest Room, rate: $100
+Room number: 201, title: 2 Double Beds, Deluxe Suite, rate: $150
+Room number: 202, title: 2 Double Beds, Deluxe Suite, rate: $150
+Room number: 203, title: 2 Double Beds, Deluxe Suite, rate: $150
+Room number: 301, title: 1 Queen Bed, Executive Room, rate: $150
+Room number: 302, title: 1 Queen Bed, Executive Room, rate: $150
+Room number: 303, title: 1 Queen Bed, Executive Room, rate: $150
+Room number: 304, title: 1 Queen Bed, Executive Room, rate: $150
