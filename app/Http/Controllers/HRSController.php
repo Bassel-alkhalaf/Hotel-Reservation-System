@@ -66,6 +66,10 @@ class HRSController extends Controller
         return view('register');
     }
 
+    public function validateRegister(Request $request) {
+        // register logic
+    }
+
 
     
 }

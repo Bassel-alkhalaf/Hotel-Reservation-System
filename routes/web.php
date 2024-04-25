@@ -24,3 +24,4 @@ Route::get('/register', 'App\Http\Controllers\HRSController@register')->name('re
 //actions
 Route::post('/create_reservation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
 Route::post('/validate_sign_in', 'App\Http\Controllers\HRSController@validateSignIn')->name('validate_sign_in');
+Route::post('/validate_register', 'App\Http\Controllers\HRSController@validateRegister')->name('validate_register');

@@ -16,7 +16,8 @@
                 <button type="submit" class="btn btn-primary mb-3">Sign In</button>
             </div>
 
-            <p class="text-center">Don't have an account? <a href="#">click here!</a></p>
+            <p class="text-center">Don't have an account? <a href="{{ route('register') }}">click here!</a></p>
+
         </form>
     </div>
 @endsection
