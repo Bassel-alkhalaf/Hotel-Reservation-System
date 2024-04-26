@@ -200,6 +200,12 @@ class HRSController extends Controller
     
         return $groupedForecasts;
     }
+
+    public function logout() {
+        Auth::logout();
+
+        return redirect()->route('sign_in'); // Redirect to login page after logout
+    }
     
     
     
