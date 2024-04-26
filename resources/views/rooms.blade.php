@@ -58,7 +58,7 @@
                             <h5 class="card-title">{{ $room['title'] }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Room Number: {{ $room['room_number'] }}</h6>
                             <p class="card-text">Rate: {{ $room['rate'] }}</p>
-                            <a class="btn btn-primary" href="#">Select</a>
+                            <a class="btn btn-primary btn-md" href="#">Select</a>
                             </div>
                         </div>
                     </div>

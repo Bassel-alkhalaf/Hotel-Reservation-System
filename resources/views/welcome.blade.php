@@ -17,9 +17,56 @@
           <h1 class="mb-3">Welcome to Star Hotel
           </h1>
           <h4 class="mb-3">Plan your escape to Star Hote</h4>
-          <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button"
-          >Reserve Now</a
-          >
+          @if (Auth::check())
+          <button type="button" class="btn btn-outline-light btn-lg" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+            Reserve Now
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Select your stay days</h5>
+                  <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="row g-1">
+                    <div class="col">
+                      <!-- Name input -->
+                      <div data-mdb-input-init class="form-outline">
+                        <input type="date" id="form9Example1" class="form-control" />
+                        <label class="form-label" for="form9Example1">Check-in date</label>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <!-- Email input -->
+                      <div data-mdb-input-init class="form-outline">
+                        <input type="date" id="form9Example2" class="form-control" />
+                        <label class="form-label" for="form9Example2">Check-out date</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row g-1">
+                  <label for="roomType">Room Type:</label>
+                  <select class="form-control" id="roomType" name="roomType" required>
+                    <option value="">Select Room Type</option>
+                    <option value="single">2 Single Beds Room</option>
+                    <option value="queen">1 Queen Bed Room</option>
+                    <option value="king">1 King Bed Room</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          @else
+          <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="{{ route('sign_in') }}" role="button"
+          >Reserve Now</a>
+          @endif
         </div>
       </div>
     </div>
@@ -35,25 +82,7 @@
             panoramic views, inviting you to unwind in style.</p>
     </div>
 </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Modal content goes here...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 <div id="carouselExampleCrossfade" class="carousel slide carousel-fade py-5 w-50 mx-auto" data-mdb-ride="carousel" data-mdb-carousel-init>
   <div class="carousel-indicators">
     <button
