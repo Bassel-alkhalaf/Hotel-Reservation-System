@@ -8,13 +8,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use DateTime;
 
 class HRSController extends Controller
 {
     public function index() {
+        // get weather forecast
+        $forecast = $this->fetchMontrealForecast();
+    
         // renders the home template
-        return view('welcome');
+        return view('welcome', compact('forecast'));
     }
 
     public function reserve() {
@@ -110,7 +113,7 @@ class HRSController extends Controller
     
         // Parse the room details from the text file
         $rooms = $this->parseRoomDetails($filePath);
-    
+
         // Pass the room details to the view
         return view('rooms', compact('rooms'));
     }
@@ -137,31 +140,70 @@ class HRSController extends Controller
                 ];
             }
         }
-        
+
         fclose($file);
         return $rooms;
     }
 
-      /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect()->route('home');
+    public function fetchMontrealForecast() {
+        $api_key = env('WEATHER_API_KEY', 'default');
+        $url = "http://api.openweathermap.org/data/2.5/forecast?lat=45.50&lon=73.56&appid=" . $api_key;
+    
+        // Initialize cURL session
+        $curl = curl_init();
+    
+        // Set cURL options
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,  // Return the response as a string
+            CURLOPT_FOLLOWLOCATION => true,   // Follow redirects
+            CURLOPT_HTTPGET => true,          // Use GET method
+        ));
+    
+        // Execute cURL request
+        $response = curl_exec($curl);
+    
+        // Check for errors
+        if ($response === false) {
+            $error = curl_error($curl);
+            curl_close($curl);
+            throw new \Exception("cURL request failed: $error");
+        }
+    
+        // Close cURL session
+        curl_close($curl);
+    
+        // Decode JSON response
+        $data = json_decode($response, true);
+    
+        // Check for JSON decoding errors
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Error decoding JSON response: " . json_last_error_msg());
+        }
+    
+        // Group forecasts by date
+        $groupedForecasts = [];
+        foreach ($data['list'] as $forecast) {
+            $date = date('Y-m-d', strtotime($forecast['dt_txt']));
+            $temperatureCelsius = round($forecast['main']['temp'] - 273.15, 2);
+            $timeOfDay = date('H:i:s', strtotime($forecast['dt_txt']));
+            if (!isset($groupedForecasts[$date])) {
+                $groupedForecasts[$date] = [];
+            }
+            $groupedForecasts[$date][] = [
+                'time_of_day' => $timeOfDay,
+                'temperature' => $temperatureCelsius,
+                'weather' => $forecast['weather'][0]['main'],
+                'conditions' => $forecast['weather'][0]['description']
+            ];
+        }
+    
+        return $groupedForecasts;
     }
     
     
+    
+    
+    
+    
 }
-
-
-  
-
