@@ -20,9 +20,23 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('rooms') }}">Rooms</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
-        </li>
+        @if (Auth::check())
+                    <!-- Display welcome message if user is logged in -->
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, {{ Auth::user()->first_name }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    </li>
+                @else
+                    <!-- Display sign-in button if user is not logged in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('sign_in') }}">Sign In</a>
+                    </li>
+                @endif
       </ul>
     </div>
   </div>

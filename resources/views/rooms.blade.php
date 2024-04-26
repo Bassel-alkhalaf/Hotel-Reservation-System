@@ -8,8 +8,8 @@
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Room Number: {{ $room['room_number'] }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Title: {{ $room['title'] }}</h6>
+                    <h5 class="card-title">{{ $room['title'] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Room Number: {{ $room['room_number'] }}</h6>
                     <p class="card-text">Rate: {{ $room['rate'] }}</p>
                 </div>
             </div>

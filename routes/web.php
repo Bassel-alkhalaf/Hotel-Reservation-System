@@ -26,3 +26,4 @@ Route::get('/rooms', 'App\Http\Controllers\HRSController@rooms')->name('rooms');
 Route::post('/create_reservation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
 Route::post('/validate_sign_in', 'App\Http\Controllers\HRSController@validateSignIn')->name('validate_sign_in');
 Route::post('/validate_register', 'App\Http\Controllers\HRSController@validateRegister')->name('validate_register');
+Route::post('/logout', 'App\Http\Controllers\HRSController@logout')->name('logout');
