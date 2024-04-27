@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<div class="container my-5">
+<div class="container my-5 pt-5">
         <h1 class="mb-5 text-center">Sign Up</h1>
         <form class="px-5 mx-5" action="{{ route('validate_register') }}" method="POST">
             @csrf

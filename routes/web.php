@@ -19,6 +19,7 @@ Route::get('/reserve', 'App\Http\Controllers\HRSController@reserve')->name('rese
 Route::get('/sign_in', 'App\Http\Controllers\HRSController@signIn')->name('sign_in');
 Route::get('/register', 'App\Http\Controllers\HRSController@register')->name('register');
 Route::get('/rooms', 'App\Http\Controllers\HRSController@rooms')->name('rooms');
+Route::get('/weather', 'App\Http\Controllers\HRSController@fetchMontrealForecast')->name('weather');
 
 
 

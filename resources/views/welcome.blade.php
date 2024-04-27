@@ -16,7 +16,7 @@
         <div class="text-white">
           <h1 class="mb-3">Welcome to Star Hotel
           </h1>
-          <h4 class="mb-3">Plan your escape to Star Hote</h4>
+          <h4 class="mb-3">Plan your escape to Star Hotel</h4>
           @if (Auth::check())
           <button type="button" class="btn btn-outline-light btn-lg" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
             Reserve Now

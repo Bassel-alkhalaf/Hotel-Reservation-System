@@ -174,42 +174,40 @@ class HRSController extends Controller
         curl_close($curl);
     
         // Decode JSON response
-        $data = json_decode($response, true);
+        $weatherData = json_decode($response, true);
     
         // Check for JSON decoding errors
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new \Exception("Error decoding JSON response: " . json_last_error_msg());
         }
-    
-        // Group forecasts by date
-        $groupedForecasts = [];
-        foreach ($data['list'] as $forecast) {
-            $date = date('Y-m-d', strtotime($forecast['dt_txt']));
-            $temperatureCelsius = round($forecast['main']['temp'] - 273.15, 2);
-            $timeOfDay = date('H:i:s', strtotime($forecast['dt_txt']));
-            if (!isset($groupedForecasts[$date])) {
-                $groupedForecasts[$date] = [];
-            }
-            $groupedForecasts[$date][] = [
-                'time_of_day' => $timeOfDay,
-                'temperature' => $temperatureCelsius,
-                'weather' => $forecast['weather'][0]['main'],
-                'conditions' => $forecast['weather'][0]['description']
+
+        $forecast = [];
+        foreach ($weatherData['list'] as $data) {
+            $date = date('Y-m-d', strtotime($data['dt_txt']));
+            $forecast[$date][] = [
+                'day' => date('l', strtotime($data['dt_txt'])),
+                'time' => date('H:i', strtotime($data['dt_txt'])),
+                'description' => $data['weather'][0]['description'],
+                'temperature' => round($data['main']['temp'] - 273.15),
             ];
         }
     
-        return $groupedForecasts;
+        // Filter forecast for today and the next five days
+        $today = date('Y-m-d');
+        $nextFiveDays = [];
+        foreach ($forecast as $date => $data) {
+            $nextFiveDays[$date] = $data[0];
+        }
+    
+        return $nextFiveDays;
+       
     }
 
     public function logout() {
         Auth::logout();
 
         return redirect()->route('sign_in'); // Redirect to login page after logout
-    }
-    
-    
-    
-    
+    }  
     
     
 }

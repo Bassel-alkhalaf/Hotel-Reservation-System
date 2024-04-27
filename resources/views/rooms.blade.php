@@ -1,7 +1,8 @@
 @extends('layouts.main')
 @section('content')
-<div class="container my-5">
-    <h1 class="mb-5 text-center">Rooms</h1>
+
+<div class="container my-5 pt-5">
+    <h1 class="my-5 text-center">Rooms</h1>
    
 
   @foreach ($rooms as $room)     
