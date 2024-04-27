@@ -21,6 +21,9 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
         rel="stylesheet"
         />
+
+        <!-- Jquerry -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body class="antialiased">
        @include('layouts.navbar')

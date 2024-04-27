@@ -20,46 +20,83 @@ class HRSController extends Controller
         return view('welcome', compact('forecast'));
     }
 
-    public function reserve() {
-        // render the reservation template
-        echo "Reserve Page";
-    }
+
 
     public function createReservation(Request $request) {
-        try {
-            // Validate the request data
-            $validatedData = $request->validate([
-                'name' => 'required|string',
-                'email' => 'required|email',
-                'phone_number' => 'required|string',
-                'check_in' => 'required|date',
-                'check_out' => 'required|date|after:check_in',
+            
+
+        // Check availability for the selected room type and dates
+        $availableRoomNumber = $this->checkAvailability($request);
+
+        // If there are available rooms, proceed with reservation creation
+        if (is_numeric($availableRoomNumber)) {
+            // Retrieve the authenticated user
+            $user = Auth::user();
+
+            // Create the reservation
+            $reservation = Reservation::create([
+                'user_id' => $user->id,
+                'room_number' => $availableRoomNumber,
+                'check_in_date' => $request->input('check_in_date'),
+                'check_out_date' => $request->input('check_out_date'),
             ]);
 
-            // Create a new Reservation instance
-            $reservation = new Reservation();
-            $reservation->name = $validatedData['name'];
-            $reservation->email = $validatedData['email'];
-            $reservation->phone_number = $validatedData['phone_number'];
-            $reservation->check_in = $validatedData['check_in'];
-            $reservation->check_out = $validatedData['check_out'];
-
-            // Save the reservation
-            $reservation->save();
-
-            // Log the successful reservation
-            Log::info('Reservation created successfully.', ['reservation_id' => $reservation->id]);
-
-            return redirect(route('home'))->with('successMsg', 'Reservation Successfully Added!');
-        } catch (\Exception $e) {
-            // Log any errors that occur during reservation creation
-            Log::error('Error creating reservation: ' . $e->getMessage());
-
-            // Return a response indicating the error occurred
-            return back()->withInput()->withErrors(['error' => 'An error occurred while processing your reservation. Please try again later.']);
+            // Optionally, you can return a success message or redirect the user to a success page
+            return view('reservation_success', ['reservation' => $reservation]);
+        } else {
+            // If no available rooms, return an error message or redirect back to the reservation form with an error
+            return back()->withInput()->withErrors(['error' => $availableRoomNumber]);
         }
     }
 
+    public function checkAvailability(Request $request) {
+        $roomType = $request->input('room_type');
+    
+        // Define room numbers based on room type
+        switch ($roomType) {
+            case '1 King Bed, Traditional Guest Room':
+                $roomNumbers = [101, 102, 103];
+                break;
+            case '2 Double Beds, Deluxe Suite':
+                $roomNumbers = [201, 202, 203];
+                break;
+            case '1 Queen Bed, Executive Room':
+                $roomNumbers = [301, 302, 303, 304];
+                break;
+            default:
+                $roomNumbers = [];
+        }
+    
+        // Check for conflicting reservations using room numbers
+        foreach ($roomNumbers as $roomNumber) {
+            $conflictingReservations = Reservation::where('room_number', $roomNumber)
+                ->where(function ($query) use ($request) {
+                    $query->where(function ($query) use ($request) {
+                        $query->where('check_in_date', '<', $request->input('check_out_date'))
+                            ->where('check_out_date', '>', $request->input('check_in_date'));
+                    })
+                    ->orWhere(function ($query) use ($request) {
+                        $query->where('check_in_date', '>=', $request->input('check_in_date'))
+                            ->where('check_in_date', '<', $request->input('check_out_date'));
+                    })
+                    ->orWhere(function ($query) use ($request) {
+                        $query->where('check_out_date', '>', $request->input('check_in_date'))
+                            ->where('check_out_date', '<=', $request->input('check_out_date'));
+                    });
+                })
+                ->get();
+    
+            if (!$conflictingReservations->isEmpty()) {
+                // If there are conflicting reservations, return an error message
+                return 'Sorry, there are no available rooms for the selected dates.';
+            }
+        }
+    
+        // If no conflicting reservations found, return the first available room number
+        return $roomNumbers[0];
+    }
+    
+    
     // sign in page 
     public function signIn() {
         return view('sign_in');        
