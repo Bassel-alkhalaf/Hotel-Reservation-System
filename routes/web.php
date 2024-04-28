@@ -24,9 +24,9 @@ Route::get('/my_profile', 'App\Http\Controllers\HRSController@myProfile')->name(
 
 
 
-
 //actions
 Route::post('/create_reservation', 'App\Http\Controllers\HRSController@createReservation')->name('create_reservation');
 Route::post('/validate_sign_in', 'App\Http\Controllers\HRSController@validateSignIn')->name('validate_sign_in');
 Route::post('/validate_register', 'App\Http\Controllers\HRSController@validateRegister')->name('validate_register');
 Route::post('/logout', 'App\Http\Controllers\HRSController@logout')->name('logout');
+Route::post('/update_email', 'App\Http\Controllers\HRSController@update_email')->name('update_email');

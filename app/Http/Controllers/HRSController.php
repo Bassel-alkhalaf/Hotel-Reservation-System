@@ -47,7 +47,7 @@ class HRSController extends Controller
                 'check_out_date' => $checkOutDate,
             ]);
     
-            // Optionally, you can return a success message or redirect the user to a success page
+            // Return a success message or redirect the user to a success page
             return view('reservation_success', ['reservation' => $reservation]);
         } else {
             // If no available rooms, return an error message or redirect back to the reservation form with an error
@@ -272,11 +272,27 @@ class HRSController extends Controller
     public function getReservationsByUserId($userId) {
         // Query reservations table to get reservations for the given user ID
         $reservations = Reservation::where('user_id', $userId)->get();
-
+      
         // Return the reservations array
         return $reservations;
     }
 
+    public function update_email(Request $request)
+    {
+        $id = $request->input('user_id');
+        $user = User::findOrFail($id);
+        
+        // Validate the request data
+        $request->validate([
+            'email' => 'required|email|unique:users,email,'.$user->id,
+        ]);
+        
+        // Update the email
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->json(['message' => 'Email updated successfully'], 200);
+    }
 
     
 }
