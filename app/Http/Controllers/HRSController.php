@@ -246,5 +246,25 @@ class HRSController extends Controller
         return redirect()->route('sign_in'); // Redirect to login page after logout
     }  
     
+    public function myProfile() {
+        if (!Auth::check()) {
+            return redirect()->route('sign_in');
+        } else {
+            $user_id = Auth::id();
+            $userReservations = $this->getReservationsByUserId($user_id);
+
+            return view('my_profile', compact('userReservations'));
+        }
+    }
+
+    public function getReservationsByUserId($userId) {
+        // Query reservations table to get reservations for the given user ID
+        $reservations = Reservation::where('user_id', $userId)->get();
+
+        // Return the reservations array
+        return $reservations;
+    }
+
+
     
 }

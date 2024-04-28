@@ -51,7 +51,7 @@
                   <span class="dropdown-item">Welcome, {{ Auth::user()->first_name }}</span>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">My profile</a>
+                <a class="dropdown-item" href="{{ route('my_profile') }}">My profile</a>
                 </li>
                 <li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
