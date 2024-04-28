@@ -30,4 +30,4 @@ Route::post('/validate_sign_in', 'App\Http\Controllers\HRSController@validateSig
 Route::post('/validate_register', 'App\Http\Controllers\HRSController@validateRegister')->name('validate_register');
 Route::post('/logout', 'App\Http\Controllers\HRSController@logout')->name('logout');
 Route::post('/update_email/{id}', 'App\Http\Controllers\HRSController@update_email')->name('update_email');
-Route::delete('/delete/{id}','App\Http\Controllers\HRSController@delete')->name('delete');
+Route::post('/delete','App\Http\Controllers\HRSController@delete')->name('delete');

@@ -61,27 +61,19 @@
     @else
 
     @foreach($userReservations as $reservation)
-    <form method="POST" id="delete-form-{{ $reservation-> id }}" action="{{ route('delete', $reservation->id)}}"
-    style="display: none;">
-        {{ csrf_field() }}
-        {{ method_field('delete') }}
+    <form method="POST" action="{{ route('delete') }}" onsubmit="return confirm('Are you sure you want to cancel your reservation?');">
+        @csrf
+        <input type="hidden" name="reservation_id" value="{{ $reservation['id'] }}">
+    
+        <tbody class="table-group-divider table-divider-color">
+            <tr>
+                <th scope="row">{{ $reservation->room_number }}</th>
+                <td>{{ $reservation->check_in_date }}</td>
+                <td>{{ $reservation->check_out_date }}</td>
+                <td><button class="text-danger border-0 bg-white" type="submit">Cancel Reservation</button>
+            </tr>
+        </tbody>
     </form>
-    <tbody class="table-group-divider table-divider-color">
-        <tr>
-        <th scope="row">{{ $reservation->room_number }}</th>
-        <td>{{ $reservation->check_in_date }}</td>
-        <td>{{ $reservation->check_out_date }}</td>
-        <td><button class="text-danger border-0 bg-white"
-        onclick="if (confirm('Are you sure you want to cancel\?') {
-            event.preventDefault();
-            document.getElementById('delete-form-{{ $reservation-> id }}'.submit();
-        }
-        else
-        {
-            event.preventDefault();
-        }">Cancel Reservation</button></td>
-        </tr>
-    </tbody>
     @endforeach
     @endif
     </table>

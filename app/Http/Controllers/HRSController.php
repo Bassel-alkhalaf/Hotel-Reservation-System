@@ -294,8 +294,9 @@ class HRSController extends Controller
 
     }
 
-    public function delete($id){
-        
+    public function delete(Request $request){
+        $id = $request->input('reservation_id');
+
         Reservation::find($id)->delete();
         
         return redirect()->back()->with('success', 'Reservation deleted successfully');
