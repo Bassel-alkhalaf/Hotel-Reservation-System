@@ -28,17 +28,12 @@
             </div>
 
             <div class="modal-body">
-                <form action="{{ route('update_email') }}" method="POST">
+                <form action="{{ route('update_email', Auth::user()->id) }}" method="POST">
                     @csrf
-
-                    <input type="hidden" name="user_id"  value="{{ Auth::user()->id }}">
-
                     <div class="mb-3">
                         <label for="email" class="form-label">Enter new email: </label>
-                        <input type="email" id ="email" class="form-control" value="{{ Auth::user()->email }}">
+                        <input type="email" id ="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
                     </div>
-
-               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cancel</button>
@@ -66,12 +61,25 @@
     @else
 
     @foreach($userReservations as $reservation)
+    <form method="POST" id="delete-form-{{ $reservation-> id }}" action="{{ route('delete', $reservation->id)}}"
+    style="display: none;">
+        {{ csrf_field() }}
+        {{ method_field('delete') }}
+    </form>
     <tbody class="table-group-divider table-divider-color">
         <tr>
         <th scope="row">{{ $reservation->room_number }}</th>
         <td>{{ $reservation->check_in_date }}</td>
         <td>{{ $reservation->check_out_date }}</td>
-        <td><a href="#" class="edit-icon px-1"><i class="fas fa-edit fa-lg"></i></a>|<a href="#" class="delete-icon px-1"><i class="fas fa-trash-alt fa-lg"></i></a></td>
+        <td><button class="text-danger border-0 bg-white"
+        onclick="if (confirm('Are you sure you want to cancel\?') {
+            event.preventDefault();
+            document.getElementById('delete-form-{{ $reservation-> id }}'.submit();
+        }
+        else
+        {
+            event.preventDefault();
+        }">Cancel Reservation</button></td>
         </tr>
     </tbody>
     @endforeach

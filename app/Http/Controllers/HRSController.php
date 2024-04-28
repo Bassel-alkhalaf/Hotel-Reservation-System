@@ -277,10 +277,10 @@ class HRSController extends Controller
         return $reservations;
     }
 
-    public function update_email(Request $request)
+    public function update_email(Request $request, $id)
     {
-        $id = $request->input('user_id');
-        $user = User::findOrFail($id);
+        
+        $user = User::find($id);
         
         // Validate the request data
         $request->validate([
@@ -290,9 +290,15 @@ class HRSController extends Controller
         // Update the email
         $user->email = $request->email;
         $user->save();
+        return redirect()->back()->with('success', 'Email updated successfully');
 
-        return response()->json(['message' => 'Email updated successfully'], 200);
     }
 
+    public function delete($id){
+        
+        Reservation::find($id)->delete();
+        
+        return redirect()->back()->with('success', 'Reservation deleted successfully');
+    }
     
 }
