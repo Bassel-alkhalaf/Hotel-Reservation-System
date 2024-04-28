@@ -24,6 +24,12 @@
 
         <!-- Jquerry -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!--meta tags for SEO-->
+        <meta name="description" content="Discover unparalleled luxury and comfort at our exquisite hotel nestled in the heart of [City], [Country]. Indulge in breathtaking views, world-class amenities, and personalized service that caters to your every need. Whether you're here for business or leisure, immerse yourself in a haven of tranquility and sophistication. Book your unforgettable stay with us today.">
+        <meta name="keywords" content="hotel, accommodation, city name, country name, amenities, unique selling points">
+        <meta name="robots" content="index, follow">
+
     </head>
     <body class="antialiased">
        @include('layouts.navbar')
