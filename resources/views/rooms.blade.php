@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="dateOut" class="form-label">Check in Date</label>
+                        <label for="dateOut" class="form-label">Check out Date</label>
                         <input type="date" class="form-control" name="check_out_date">
                     </div>
 
