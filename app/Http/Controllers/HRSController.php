@@ -23,24 +23,30 @@ class HRSController extends Controller
 
 
     public function createReservation(Request $request) {
-            
-
+        // Check if the check-in date is in the past or after the check-out date
+        $checkInDate = $request->input('check_in_date');
+        $checkOutDate = $request->input('check_out_date');
+    
+        if ($checkInDate <= date('Y-m-d') || $checkInDate >= $checkOutDate) {
+            return back()->withInput()->withErrors(['error' => 'Invalid check-in or check-out date.']);
+        }
+    
         // Check availability for the selected room type and dates
         $availableRoomNumber = $this->checkAvailability($request);
-
+    
         // If there are available rooms, proceed with reservation creation
         if (is_numeric($availableRoomNumber)) {
             // Retrieve the authenticated user
             $user = Auth::user();
-
+    
             // Create the reservation
             $reservation = Reservation::create([
                 'user_id' => $user->id,
                 'room_number' => $availableRoomNumber,
-                'check_in_date' => $request->input('check_in_date'),
-                'check_out_date' => $request->input('check_out_date'),
+                'check_in_date' => $checkInDate,
+                'check_out_date' => $checkOutDate,
             ]);
-
+    
             // Optionally, you can return a success message or redirect the user to a success page
             return view('reservation_success', ['reservation' => $reservation]);
         } else {
@@ -48,6 +54,7 @@ class HRSController extends Controller
             return back()->withInput()->withErrors(['error' => $availableRoomNumber]);
         }
     }
+    
 
     public function checkAvailability(Request $request) {
         $roomType = $request->input('room_type');
@@ -124,7 +131,7 @@ class HRSController extends Controller
     }
 
     public function validateRegister(Request $request) {
-
+        // Validate the incoming data
         $validatedData = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
@@ -133,16 +140,21 @@ class HRSController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
         ]);
-
+    
+        // Capitalize the first and last names
+        $validatedData['first_name'] = ucfirst(strtolower($validatedData['first_name']));
+        $validatedData['last_name'] = ucfirst(strtolower($validatedData['last_name']));
+    
         // Create and save the user
         $user = new User();
         $user->fill($validatedData);
         $user->password = Hash::make($validatedData['password']); // Hash the password before saving
         $user->save();
-
+    
         // Optionally, you can redirect the user after successful registration
         return redirect()->route('sign_in')->with('successMsg', 'Registration successful. You can now login.');
     }
+    
 
     public function rooms() {
         // Path to the text file containing room details
