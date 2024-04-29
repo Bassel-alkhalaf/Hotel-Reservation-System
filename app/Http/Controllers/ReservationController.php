@@ -78,15 +78,17 @@ class ReservationController extends Controller {
                 })
                 ->get();
     
-            if (!$conflictingReservations->isEmpty()) {
-                // If there are conflicting reservations, return an error message
-                return 'Sorry, there are no available rooms for the selected dates.';
+            if ($conflictingReservations->isEmpty()) {
+                // If no conflicts found for the current room, return the room number
+                return $roomNumber;
             }
         }
     
-        // If no conflicting reservations found, return the first available room number
-        return $roomNumbers[0];
+        // If conflicts found for all rooms, return an error message
+        return 'Sorry, there are no available rooms for the selected dates.';
     }
+    
+    
 
     public function delete(Request $request){
         $id = $request->input('reservation_id');
