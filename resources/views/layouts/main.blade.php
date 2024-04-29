@@ -31,7 +31,7 @@
         <meta name="robots" content="index, follow">
 
     </head>
-    <body class="antialiased">
+    <body class="antialiased min-vh-100 d-flex flex-column">
        @include('layouts.navbar')
        @yield('content')
        @include('layouts.footer')
@@ -41,9 +41,7 @@
        
        
        
-       
-       
-       
+         
 
        <!-- MDB -->
         <script
