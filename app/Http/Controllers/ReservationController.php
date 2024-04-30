@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller {
     public function createReservation(Request $request) {
-        // Check if the check-in date is in the past or after the check-out date
+       
         $checkInDate = $request->input('check_in_date');
         $checkOutDate = $request->input('check_out_date');
     
@@ -16,12 +16,12 @@ class ReservationController extends Controller {
             return back()->withInput()->withErrors(['error' => 'Invalid check-in or check-out date.']);
         }
     
-        // Check availability for the selected room type and dates
+       
         $availableRoomNumber = $this->checkAvailability($request);
     
-        // If there are available rooms, proceed with reservation creation
+        
         if (is_numeric($availableRoomNumber)) {
-            // Retrieve the authenticated user
+           
             $user = Auth::user();
     
             // Create the reservation
@@ -32,10 +32,10 @@ class ReservationController extends Controller {
                 'check_out_date' => $checkOutDate,
             ]);
     
-            // Return a success message or redirect the user to a success page
+            
             return view('reservation_success', ['reservation' => $reservation]);
         } else {
-            // If no available rooms, return an error message or redirect back to the reservation form with an error
+           
             return back()->withInput()->withErrors(['error' => $availableRoomNumber]);
         }
     }
@@ -44,7 +44,6 @@ class ReservationController extends Controller {
     public function checkAvailability(Request $request) {
         $roomType = $request->input('room_type');
     
-        // Define room numbers based on room type
         switch ($roomType) {
             case '1 King Bed, Traditional Guest Room':
                 $roomNumbers = [101, 102, 103];
@@ -59,7 +58,7 @@ class ReservationController extends Controller {
                 $roomNumbers = [];
         }
     
-        // Check for conflicting reservations using room numbers
+        
         foreach ($roomNumbers as $roomNumber) {
             $conflictingReservations = Reservation::where('room_number', $roomNumber)
                 ->where(function ($query) use ($request) {
@@ -79,12 +78,12 @@ class ReservationController extends Controller {
                 ->get();
     
             if ($conflictingReservations->isEmpty()) {
-                // If no conflicts found for the current room, return the room number
+                
                 return $roomNumber;
             }
         }
     
-        // If conflicts found for all rooms, return an error message
+        
         return 'Sorry, there are no available rooms for the selected dates.';
     }
     
