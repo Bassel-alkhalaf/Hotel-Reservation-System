@@ -82,12 +82,13 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
-                        var modalContent = '<div class="modal-content">';
+                        var modalContent = '<div class="modal-content text-center">';
                         Object.keys(response).forEach(function(date) {
                             var weatherData = response[date];
                             modalContent += '<h4>' + weatherData.day + ' - ' + date + '</h4>';
                             modalContent += '<p>' + weatherData.description + '</p>';
                             modalContent += '<p>' + weatherData.temperature + '°C</p>';
+                            modalContent += "</hr>";
                         });
                         modalContent += '</div>';
 
